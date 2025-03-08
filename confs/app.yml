@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playground-deployment
+  labels:
+    app: playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playground
+  template:
+    metadata:
+      labels:
+        app: playground
+    spec:
+      containers:
+        - name: playground
+          image: wil42/playground:v1 # Можно поменять на v2
+          ports:
+            - containerPort: 80 # Порт контейнера
+          env:
+            - name: ENV_VAR
+              value: "example_value" # Переменные окружения
+          volumeMounts:
+            - name: data-volume
+              mountPath: /app/data
+      volumes:
+        - name: data-volume
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playground-service
+spec:
+  selector:
+    app: playground
+  ports:
+    - protocol: TCP
+      port: 8080 # Внешний порт
+      targetPort: 80 # Порт контейнера
+  type: LoadBalancer
