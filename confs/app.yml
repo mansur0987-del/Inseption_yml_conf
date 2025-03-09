@@ -19,7 +19,7 @@ spec:
         - name: playground
           image: wil42/playground:v2 # Можно поменять на v2
           ports:
-            - containerPort: 8888 # Порт контейнера
+            - containerPort: 8080 # Порт контейнера
           env:
             - name: ENV_VAR
               value: "example_value" # Переменные окружения
@@ -40,22 +40,6 @@ spec:
   ports:
     - protocol: TCP
       port: 8080 # Внешний порт
-      targetPort: 8888 # Порт контейнера
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: playground-ingress
-  namespace: dev
-spec:
-  rules:
-    - host: 127.0.0.1.nip.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: playground-service
-                port:
-                  number: 8888
+      targetPort: 8080 # Порт контейнера
+      nodePort: 8888
+  type: NodePort
