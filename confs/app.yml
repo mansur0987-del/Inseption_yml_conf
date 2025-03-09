@@ -41,3 +41,21 @@ spec:
     - protocol: TCP
       port: 8080 # Внешний порт
       targetPort: 8888 # Порт контейнера
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: playground-ingress
+  namespace: dev
+spec:
+  rules:
+    - host: localhost # Укажите свой домен (или IP)
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: playground-service
+                port:
+                  number: 8888
