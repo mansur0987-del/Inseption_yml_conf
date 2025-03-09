@@ -41,4 +41,3 @@ spec:
     - protocol: TCP
       port: 8080 # Внешний порт
       targetPort: 8888 # Порт контейнера
-  type: LoadBalancer
