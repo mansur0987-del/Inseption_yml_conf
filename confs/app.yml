@@ -49,7 +49,7 @@ metadata:
   namespace: dev
 spec:
   rules:
-    - host:
+    - host: 127.0.0.1.nip.io
       http:
         paths:
           - path: /
