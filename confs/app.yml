@@ -50,7 +50,7 @@ metadata:
   namespace: dev
 spec:
   rules:
-    - host: "0.0.0.0"
+    - host: 0.0.0.0
       http:
         paths:
           - path: /
