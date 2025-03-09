@@ -49,7 +49,7 @@ metadata:
   namespace: dev
 spec:
   rules:
-    - host: localhost # Укажите свой домен (или IP)
+    - host:
       http:
         paths:
           - path: /
