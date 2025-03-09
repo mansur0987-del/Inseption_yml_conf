@@ -41,5 +41,5 @@ spec:
     - protocol: TCP
       port: 8080 # Внешний порт
       targetPort: 8080 # Порт контейнера
-      nodePort: 8888
+      nodePort: 300888
   type: NodePort
